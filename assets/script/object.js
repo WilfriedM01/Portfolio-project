@@ -114,3 +114,38 @@ const projects = [
     source: "https://github.com/WilfriedM01/portfolio-project.git",
   },
 ];
+
+// Work section data structure
+const Worksection = document.querySelector(".work-cards");
+projects.forEach((project) => {
+  const cardDiv = document.createElement("div");
+  cardDiv.innerHTML = `
+  <a href="#" class="article-link opacity"
+        ><section class="articles">
+          <article class="article-item ${project.id}">
+            <p class="sub-item">
+              <img
+                src="${project.imageDesktop}"
+                alt=""
+                class="article-img"
+              />
+            </p>
+            <div class="article-content">
+              <h2 class="article-title">${project.title}</h2>
+              <h3>${project.company} <span>&bull; ${project.specialization} &bull; ${project.year}</span></h3>
+              <p class="article-text">
+              ${project.description1}
+              </p>
+              <ul class="article-tags">
+                <li class="article-tag ok">${project.technologies.tech1}</li>
+                <li class="article-tag">${project.technologies.tech2}</li>
+                <li class="article-tag">${project.technologies.tech3}</li>
+              </ul>
+              <button class="article-btn button_see_2" id="${project.id}">${project.details}</button>
+            </div>
+          </article>
+        </section></a
+      >
+  `;
+  Worksection.append(cardDiv);
+});
