@@ -148,22 +148,24 @@ projects.forEach((project) => {
         </section></a
       >
   `;
-  console.log(project.id);
   Worksection.append(cardDiv);
+  const btnSeeProject = document.getElementById(project.id);
+  btnSeeProject.addEventListener("click", () => {
+    console.log("Clic btn " + project.id);
+    //call our madal
+    showPopup(project);
+  });
 });
 
-// Modal content
-const body = document.querySelector("body");
-const seeProject = document.querySelectorAll(".button_see_2");
-seeProject.forEach((button) =>
-  button.addEventListener("click", (button) => {
-    const { id } = button.target;
-    const pop = projects.find((button) => button.id === id);
-    const modal = document.createElement("div");
-    modal.className = "modal";
-    const popup = document.createElement("div");
-    popup.innerHTML = `
-  <div class="model model_2 model_3 model_4">
+function showPopup(pop) {
+  console.log(pop.title);
+  const body = document.querySelector(".main_body");
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.setAttribute("id", pop.id);
+  const popup = document.createElement("div");
+  popup.innerHTML = `
+  <div class="model model_2 model_3 model_4" id>
 <div class="model-main">
   <div class="sub-div">
     <div class="title-links-closeButton">
@@ -217,47 +219,17 @@ seeProject.forEach((button) =>
 </div>
 </div>
   `;
-    modal.appendChild(popup);
-    body.append(modal);
-    // Close the popup
-    const desktopIdContainer = document.getElementById("desktop-id");
-    function closeModels() {
-      modal.style.display = "none";
-      body.style.overflow = "auto";
-    }
-    desktopIdContainer.addEventListener("click", closeModels);
-  })
-);
+  modal.appendChild(popup);
+  body.append(modal);
+  const model = document.querySelector(".modal");
+  const desktopIdContainer = document.getElementById("desktop-id");
 
-// Const variables
-
-const buttonSee = document.querySelectorAll(".button_see_2");
-
-const model = document.getElementsByClassName("modal");
-const mainBody = document.querySelector(".main_body");
-
-// funtions
-
-function openModel() {
-  model[0].style.display = "block";
+  const mainBody = document.querySelector(".main_body");
+  model.style.display = "block";
   mainBody.style.overflow = "hidden";
-}
-function openModel2() {
-  model[1].style.display = "block";
-  mainBody.style.overflow = "hidden";
-}
-function openModel3() {
-  model[2].style.display = "block";
-  mainBody.style.overflow = "hidden";
-}
-function openModel4() {
-  model[3].style.display = "block";
-  mainBody.style.overflow = "hidden";
-}
 
-// EventListener
-
-buttonSee[0].addEventListener("click", openModel);
-buttonSee[1].addEventListener("click", openModel2);
-buttonSee[2].addEventListener("click", openModel3);
-buttonSee[3].addEventListener("click", openModel4);
+  desktopIdContainer.addEventListener("click", () => {
+    modal.remove();
+    mainBody.style.overflow = "auto";
+  });
+}
