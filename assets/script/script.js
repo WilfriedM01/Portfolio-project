@@ -59,3 +59,17 @@ function validateEmail(input, requiredMsg, invalidMsg) {
   return true;
 }
 
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let nameValid = hasValue(form.elements["user-name"], NAME_REQUIRED);
+  let emailValid = validateEmail(
+    form.elements["user-email"],
+    EMAIL_REQUIRED,
+    EMAIL_INVALID
+  );
+  let messageValid = hasValue(form.elements["user-message"], MESSAGE_REQUIRED);
+
+  if (nameValid && emailValid && messageValid) {
+    form.submit();
+  }
+});
