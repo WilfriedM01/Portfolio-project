@@ -648,6 +648,19 @@ input {
   color: white;
 }
 
+.success {
+  border: green 1px solid;
+}
+
+.error {
+  border: red 1px solid;
+}
+
+.message-error {
+  color: red;
+  display: block;
+}
+
 @media all and (min-width: 375px) {
   .menu-list {
     display: none;

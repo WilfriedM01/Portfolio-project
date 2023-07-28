@@ -272,6 +272,7 @@
           <form
             action="https://formspree.io/f/mqkojebp"
             method="post"
+            id="contact-form"
             class="contact-form"
           >
             <ul>
@@ -279,27 +280,30 @@
                 <input
                   type="text"
                   name="user-name"
+                  class="user-name"
                   placeholder="Full name"
                   maxlength="30"
-                  required
                 />
+                <span class="message-error"></span>
               </li>
               <li class="email-field">
                 <input
                   type="email"
                   name="user-email"
+                  class="user-email"
                   placeholder="Email address"
-                  required
                 />
+                <span class="message-error"></span>
               </li>
               <li class="message-area">
                 <textarea
                   name="user-message"
                   id="#"
+                  class="user-message"
                   placeholder="Write your message here..."
                   maxlength="500"
-                  required
                 ></textarea>
+                <span class="message-error"></span>
               </li>
               <li class="button">
                 <button type="submit" class="contact-me-btn">
