@@ -8,7 +8,7 @@ const ContactButton = document.getElementById("contact_buttton");
 const form = document.getElementById("contact-form");
 const NAME_REQUIRED = "Please enter your name";
 const EMAIL_REQUIRED = "Please enter your email";
-const EMAIL_INVALID = "Please enter a correct email address format";
+const EMAIL_INVALID = "Please use lowcases only for correct mail";
 const MESSAGE_REQUIRED = "Please enter your message";
 
 function close() {
