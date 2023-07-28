@@ -73,6 +73,12 @@ form.addEventListener("submit", function (event) {
   if (nameValid && emailValid && messageValid) {
     //Data storage object
 
+let datals = {
+      name_ls: form.elements["user-name"].value,
+      email_ls: form.elements["user-email"].value,
+      message_ls: form.elements["user-message"].value,
+    };
+    
     //form.submit();
   }
 });
