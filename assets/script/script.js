@@ -27,6 +27,7 @@ PortfolioButton.addEventListener("click", close);
 AboutButton.addEventListener("click", close);
 ContactButton.addEventListener("click", close);
 
+//Form validation
 function Message(input, message, type) {
   let msg = input.parentNode.querySelector("span");
   msg.innerHTML = message;
@@ -70,6 +71,8 @@ form.addEventListener("submit", function (event) {
   let messageValid = hasValue(form.elements["user-message"], MESSAGE_REQUIRED);
 
   if (nameValid && emailValid && messageValid) {
-    form.submit();
+    //Data storage object
+
+    //form.submit();
   }
 });
