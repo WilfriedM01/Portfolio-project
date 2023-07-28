@@ -37,3 +37,25 @@ function Message(input, message, type) {
   }
   return type;
 }
+
+function hasValue(input, message) {
+  if (input.value.trim() === "") {
+    return Message(input, message, false);
+  } else {
+    return Message(input, "", true);
+  }
+}
+
+function validateEmail(input, requiredMsg, invalidMsg) {
+  if (!hasValue(input, requiredMsg)) {
+    return false;
+  }
+  // validate email format
+  const emailRegex = /[A-Z]/;
+  const email = input.value.trim();
+  if (emailRegex.test(email)) {
+    return Message(input, invalidMsg, false);
+  }
+  return true;
+}
+
