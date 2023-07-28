@@ -26,3 +26,14 @@ HumbergerButton.addEventListener("click", open);
 PortfolioButton.addEventListener("click", close);
 AboutButton.addEventListener("click", close);
 ContactButton.addEventListener("click", close);
+
+function Message(input, message, type) {
+  let msg = input.parentNode.querySelector("span");
+  msg.innerHTML = message;
+  if (type) {
+    input.className = "success";
+  } else {
+    input.className = "error";
+  }
+  return type;
+}
