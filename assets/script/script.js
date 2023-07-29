@@ -73,12 +73,26 @@ form.addEventListener("submit", function (event) {
   if (nameValid && emailValid && messageValid) {
     //Data storage object
 
-let datals = {
+    let datals = {
       name_ls: form.elements["user-name"].value,
       email_ls: form.elements["user-email"].value,
       message_ls: form.elements["user-message"].value,
     };
-    
+
     //form.submit();
   }
 });
+
+let datals = {
+  name_ls: "",
+  email_ls: "",
+  message_ls: "",
+};
+
+//get data from form and set locale storage
+function storeLD() {
+  datals.name_ls = form.elements["user-name"].value;
+  datals.email_ls = form.elements["user-email"].value;
+  datals.message_ls = form.elements["user-message"].value;
+  window.localStorage.setItem("userDataForm", JSON.stringify(datals));
+}
