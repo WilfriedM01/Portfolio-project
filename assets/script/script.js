@@ -11,6 +11,10 @@ const EMAIL_REQUIRED = "Please enter your email";
 const EMAIL_INVALID = "Please use lowcases only for correct mail";
 const MESSAGE_REQUIRED = "Please enter your message";
 
+const userName = document.getElementById("user-name");
+const userEmail = document.getElementsByClassName("user-email");
+const userMessage = document.getElementsByClassName("user-message");
+
 function close() {
   MobileMenu.style.display = "none";
   document.body.style.overflow = "auto";
@@ -71,15 +75,7 @@ form.addEventListener("submit", function (event) {
   let messageValid = hasValue(form.elements["user-message"], MESSAGE_REQUIRED);
 
   if (nameValid && emailValid && messageValid) {
-    //Data storage object
-
-    let datals = {
-      name_ls: form.elements["user-name"].value,
-      email_ls: form.elements["user-email"].value,
-      message_ls: form.elements["user-message"].value,
-    };
-
-    //form.submit();
+    form.submit();
   }
 });
 
@@ -91,8 +87,21 @@ let datals = {
 
 //get data from form and set locale storage
 function storeLD() {
-  datals.name_ls = form.elements["user-name"].value;
-  datals.email_ls = form.elements["user-email"].value;
-  datals.message_ls = form.elements["user-message"].value;
+  datals.name_ls = userName.value;
+  datals.email_ls = userEmail.value;
+  datals.message_ls = userMessage.value;
   window.localStorage.setItem("userDataForm", JSON.stringify(datals));
 }
+
+userEmail.addEventListener("input", storeLD);
+userName.addEventListener("input", storeLD);
+userMessage.addEventListener("input", storeLD);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const storedData = JSON.parse(localStorage.getItem("userDataForm"));
+  if (storedData) {
+    userEmail.value = storedData.email_ls ? storedData.email_ls : "";
+    userName.value = storedData.name_ls ? storedData.name_ls : "";
+    userMessage.value = storedData.message_ls ? storedData.message_ls : "";
+  }
+});
