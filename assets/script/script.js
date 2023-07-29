@@ -11,6 +11,10 @@ const EMAIL_REQUIRED = "Please enter your email";
 const EMAIL_INVALID = "Please use lowcases only for correct mail";
 const MESSAGE_REQUIRED = "Please enter your message";
 
+const userName = document.getElementById("user-name");
+const userEmail = document.getElementsByClassName("user-email");
+const userMessage = document.getElementsByClassName("user-message");
+
 function close() {
   MobileMenu.style.display = "none";
   document.body.style.overflow = "auto";
@@ -27,6 +31,7 @@ PortfolioButton.addEventListener("click", close);
 AboutButton.addEventListener("click", close);
 ContactButton.addEventListener("click", close);
 
+//Form validation
 function Message(input, message, type) {
   let msg = input.parentNode.querySelector("span");
   msg.innerHTML = message;
@@ -71,5 +76,32 @@ form.addEventListener("submit", function (event) {
 
   if (nameValid && emailValid && messageValid) {
     form.submit();
+  }
+});
+
+let datals = {
+  name_ls: "",
+  email_ls: "",
+  message_ls: "",
+};
+
+//get data from form and set locale storage
+function storeLD() {
+  datals.name_ls = userName.value;
+  datals.email_ls = userEmail.value;
+  datals.message_ls = userMessage.value;
+  window.localStorage.setItem("userDataForm", JSON.stringify(datals));
+}
+
+userEmail.addEventListener("input", storeLD);
+userName.addEventListener("input", storeLD);
+userMessage.addEventListener("input", storeLD);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const storedData = JSON.parse(localStorage.getItem("userDataForm"));
+  if (storedData) {
+    userEmail.value = storedData.email_ls ? storedData.email_ls : "";
+    userName.value = storedData.name_ls ? storedData.name_ls : "";
+    userMessage.value = storedData.message_ls ? storedData.message_ls : "";
   }
 });
